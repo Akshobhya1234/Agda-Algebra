@@ -16,3 +16,5 @@ record IsPique (_∙_ : Op₂ A) (ε : A) (⁻¹ : Op₁ A) : Set (a ⊔ ℓ) wh
   field
     isQuasigroup : IsQuasigroup _∙_  ε ⁻¹
     idem         : Idempotent _∙_
+
+  open IsQuasigroup isQuasigroup public 
