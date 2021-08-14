@@ -49,3 +49,23 @@ record RightBolLoop c ℓ : Set (suc (c ⊔ ℓ)) where
 
   open Loop loop public
     using (_≉_; rawMagma; magma; quasigroup)
+
+record MoufangLoop c ℓ : Set (suc (c ⊔ ℓ)) where
+  infix  8 _⁻¹
+  infixl 7 _∙_
+  infix  4 _≈_
+  field
+    Carrier : Set c
+    _≈_     : Rel Carrier ℓ
+    _∙_     : Op₂ Carrier
+    ε       : Carrier
+    _⁻¹     : Op₁ Carrier
+    isMoufangLoop : IsMoufangLoop _≈_ _∙_ ε _⁻¹
+
+  open IsMoufangLoop isMoufangLoop public
+
+  loop : Loop _ _
+  loop = record { isLoop = isLoop }
+
+  open Loop loop public
+    using (_≉_; rawMagma; magma; quasigroup)

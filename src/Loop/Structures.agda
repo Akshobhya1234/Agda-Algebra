@@ -18,7 +18,18 @@ record IsLeftBolLoop (_∙_ : Op₂ A) (ε : A) (⁻¹ : Op₁ A) : Set (a ⊔ �
     isLoop  : IsLoop _∙_  ε ⁻¹
     leftBol : LeftBol _∙_
 
+  open IsLoop isLoop public
+
 record IsRightBolLoop (_∙_ : Op₂ A) (ε : A) (⁻¹ : Op₁ A) : Set (a ⊔ ℓ) where
   field
-    isLoop  : IsLoop _∙_  ε ⁻¹
+    isLoop   : IsLoop _∙_  ε ⁻¹
     rightBol : RightBol _∙_
+
+  open IsLoop isLoop public
+
+record IsMoufangLoop (_∙_ : Op₂ A) (ε : A) (⁻¹ : Op₁ A) : Set (a ⊔ ℓ) where
+  field
+    isLoop          : IsLoop _∙_  ε ⁻¹
+    moufangIdentity : MoufangIdentity _∙_
+
+  open IsLoop isLoop public
