@@ -3,5 +3,6 @@
 module Quasigroup where
 
 open import Quasigroup.Bundles public
+open import Quasigroup.Definitions public
 open import Quasigroup.Structures public
 open import Quasigroup.Properties public
