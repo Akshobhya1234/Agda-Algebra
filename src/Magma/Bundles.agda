@@ -43,3 +43,20 @@ record AlternateMagma c ℓ : Set (suc (c ⊔ ℓ)) where
 
   open Magma magma public
     using (rawMagma)
+
+record FlexibleMagma c ℓ : Set (suc (c ⊔ ℓ)) where
+  infixl 7 _∙_
+  infix  4 _≈_
+  field
+    Carrier : Set c
+    _≈_     : Rel Carrier ℓ
+    _∙_     : Op₂ Carrier
+    isFlexibleMagma  : IsFlexibleMagma _≈_ _∙_
+
+  open IsFlexibleMagma isFlexibleMagma public
+
+  magma : Magma c ℓ
+  magma = record { isMagma = isMagma }
+
+  open Magma magma public
+    using (rawMagma)

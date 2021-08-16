@@ -18,3 +18,6 @@ Alternativeʳ _∙_ = ∀ x y → (x ∙ (y ∙ y)) ≈ ((x ∙ y) ∙ y)
 
 Alternative : Op₂ A → Set _
 Alternative _∙_ = (Alternativeˡ _∙_ ) × ( Alternativeʳ _∙_)
+
+Flexible : Op₂ A → Set _
+Flexible _∙_ = ∀ x y → ((x ∙ y) ∙ x) ≈ (x ∙ (y ∙ x))

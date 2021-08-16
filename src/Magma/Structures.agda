@@ -26,3 +26,10 @@ record IsAlternateMagma (∙ : Op₂ A) : Set (a ⊔ ℓ) where
     alter    : Alternative ∙
 
   open IsMagma isMagma public
+
+record IsFlexibleMagma (∙ : Op₂ A) : Set (a ⊔ ℓ) where
+  field
+    isMagma  : IsMagma ∙ 
+    flex     : Flexible ∙
+
+  open IsMagma isMagma public
