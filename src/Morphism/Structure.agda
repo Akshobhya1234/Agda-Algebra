@@ -10,15 +10,16 @@ import Algebra.Morphism.Definitions as MorphismDefinitions
 open import Level using (Level; _⊔_)
 import Function.Definitions as FunctionDefinitions
 open import Relation.Binary.Morphism.Structures
+open import Quasigroup.Bundles
 
 private
   variable
     a b ℓ₁ ℓ₂ : Level
 
-module QuasigroupMorphisms (Q₁ : Quasigroup a ℓ₁) (Q₂ : Quasigroup b ℓ₂) where
+module QuasigroupMorphisms (Q₁ : RawQuasigroup a ℓ₁) (Q₂ : RawQuasigroup b ℓ₂) where
 
-  open Quasigroup Q₁ renaming (Carrier to A; _≈_ to _≈₁_; _∙_ to _∙_)
-  open Quasigroup Q₂ renaming (Carrier to B; _≈_ to _≈₂_; _∙_ to _◦_)
+  open RawQuasigroup Q₁ renaming (Carrier to A; _≈_ to _≈₁_; _∙_ to _∙_)
+  open RawQuasigroup Q₂ renaming (Carrier to B; _≈_ to _≈₂_; _∙_ to _◦_)
   open MorphismDefinitions A B _≈₂_
   open FunctionDefinitions _≈₁_ _≈₂_
 
