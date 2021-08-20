@@ -20,6 +20,9 @@ record IsPique (_∙_ : Op₂ A) (ε : A) (⁻¹ : Op₁ A) : Set (a ⊔ ℓ) wh
 
   open IsQuasigroup isQuasigroup public 
 
+------------------------------------------------------------------------
+-- Structures with 3 binary operations
+------------------------------------------------------------------------
 
 --Note this QuasiGroup is different from Algebra.Structures Quasigroup in stdlib
 --Here QuasiGroup (Q, ∗, \, /) is a type (2,2,2) algebra
