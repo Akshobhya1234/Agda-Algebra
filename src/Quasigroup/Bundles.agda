@@ -44,6 +44,9 @@ record Pique c ℓ : Set (suc (c ⊔ ℓ)) where
 
   open IsPique isPique public
 
+--Note this QuasiGroup is different from Algebra.Bundles Quasigroup in stdlib
+--Here QuasiGroup (Q, ∗, \, /) is a type (2,2,2) algebra
+
 record QuasiGroup c ℓ : Set (suc (c ⊔ ℓ)) where
   field
     Carrier : Set c

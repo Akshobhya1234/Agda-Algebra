@@ -20,6 +20,10 @@ record IsPique (_∙_ : Op₂ A) (ε : A) (⁻¹ : Op₁ A) : Set (a ⊔ ℓ) wh
 
   open IsQuasigroup isQuasigroup public 
 
+
+--Note this QuasiGroup is different from Algebra.Structures Quasigroup in stdlib
+--Here QuasiGroup (Q, ∗, \, /) is a type (2,2,2) algebra
+
 record IsQuasiGroup (* |ᵇ |ᶠ : Op₂ A) : Set (a ⊔ ℓ) where
   field
     isEquivalence            : IsEquivalence _≈_
