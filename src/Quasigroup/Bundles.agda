@@ -43,3 +43,15 @@ record Pique c ℓ : Set (suc (c ⊔ ℓ)) where
     isPique : IsPique _≈_ _∙_ ε _⁻¹
 
   open IsPique isPique public
+
+record QuasiGroup c ℓ : Set (suc (c ⊔ ℓ)) where
+  field
+    Carrier : Set c
+    _≈_     : Rel Carrier ℓ
+    *       : Op₂ Carrier
+    |ᵇ      : Op₂ Carrier
+    |ᶠ      : Op₂ Carrier
+    isQuasiGroup : IsQuasiGroup  _≈_ * |ᵇ |ᶠ
+    
+  open IsQuasiGroup isQuasiGroup public
+
