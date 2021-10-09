@@ -10,17 +10,17 @@ module Quasigroup.Definitions
 open import Algebra.Core
 open import Data.Product
 
-_QuasigroupIdentity₁_ : Op₂ A → Op₂ A → Set _
-_*_ QuasigroupIdentity₁ _|ᵇ_ = ∀ x y → (x *(x |ᵇ y)) ≈ y
+_LeftDivisionˡ_ : Op₂ A → Op₂ A → Set _
+_*_ LeftDivisionˡ _\\_ = ∀ x y → (x * (x \\ y)) ≈ y
 
-_QuasigroupIdentity₂_ : Op₂ A → Op₂ A → Set _
-_*_ QuasigroupIdentity₂ _|ᵇ_ = ∀ x y → (x |ᵇ(x * y)) ≈ y
+_LeftDivisionʳ_ : Op₂ A → Op₂ A → Set _
+_*_ LeftDivisionʳ _\\_ = ∀ x y → (x \\ (x * y)) ≈ y
 
-_QuasigroupIdentity₃_ : Op₂ A → Op₂ A → Set _
-_*_ QuasigroupIdentity₃ _|ᶠ_ = ∀ x y → ((y |ᶠ x)* x) ≈ y
+_RightDivisionˡ_ : Op₂ A → Op₂ A → Set _
+_*_ RightDivisionˡ _//_ = ∀ x y → ((y // x) * x) ≈ y
 
-_QuasigroupIdentity₄_ : Op₂ A → Op₂ A → Set _
-_*_ QuasigroupIdentity₄ _|ᶠ_ = ∀ x y → ((y * x)|ᶠ x) ≈ y
+_RightDivisionʳ_ : Op₂ A → Op₂ A → Set _
+_*_ RightDivisionʳ _//_ = ∀ x y → ((y * x) // x) ≈ y
 
 LatinSquareProperty₁ : Op₂ A → Set _
 LatinSquareProperty₁ _*_ = ∀ a b x  → (a * x) ≈ b 

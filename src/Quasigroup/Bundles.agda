@@ -51,15 +51,15 @@ record Pique c ℓ : Set (suc (c ⊔ ℓ)) where
 
 --Note this QuasiGroup is different from Algebra.Bundles Quasigroup in stdlib
 --Here QuasiGroup (Q, ∗, \, /) is a type (2,2,2) algebra
-
+-- TODO add fixity.
 record QuasiGroup c ℓ : Set (suc (c ⊔ ℓ)) where
   field
     Carrier : Set c
     _≈_     : Rel Carrier ℓ
     *       : Op₂ Carrier
-    |ᵇ      : Op₂ Carrier
-    |ᶠ      : Op₂ Carrier
-    isQuasiGroup : IsQuasiGroup  _≈_ * |ᵇ |ᶠ
+    \\      : Op₂ Carrier
+    //      : Op₂ Carrier
+    isQuasiGroup : IsQuasiGroup  _≈_ * \\ //
     
   open IsQuasiGroup isQuasiGroup public
 
