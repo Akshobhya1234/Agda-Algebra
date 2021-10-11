@@ -27,12 +27,12 @@ record IsPique (_∙_ : Op₂ A) (ε : A) (⁻¹ : Op₁ A) : Set (a ⊔ ℓ) wh
 --Note this QuasiGroup is different from Algebra.Structures Quasigroup in stdlib
 --Here QuasiGroup (Q, ∗, \, /) is a type (2,2,2) algebra
 
-record IsQuasiGroup (* \\ // : Op₂ A) : Set (a ⊔ ℓ) where
+record IsQuasiGroup (∙ \\ // : Op₂ A) : Set (a ⊔ ℓ) where
   field
-    isEquivalence            : IsEquivalence _≈_
-    LeftDivisionˡ : * LeftDivisionˡ \\
-    LeftDivisionʳ : * LeftDivisionʳ \\
-    RightDivisionˡ : * RightDivisionˡ //
-    RightDivisionʳ : * RightDivisionʳ //
+    isEquivalence  : IsEquivalence _≈_
+    LeftDivisionˡ  : ∙ LeftDivisionˡ \\
+    LeftDivisionʳ  : ∙ LeftDivisionʳ \\
+    RightDivisionˡ : ∙ RightDivisionˡ //
+    RightDivisionʳ : ∙ RightDivisionʳ //
 
   open IsEquivalence isEquivalence public

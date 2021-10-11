@@ -52,14 +52,40 @@ record Pique c ℓ : Set (suc (c ⊔ ℓ)) where
 --Note this QuasiGroup is different from Algebra.Bundles Quasigroup in stdlib
 --Here QuasiGroup (Q, ∗, \, /) is a type (2,2,2) algebra
 -- TODO add fixity.
+record RawQuasiGroup c ℓ : Set (suc (c ⊔ ℓ)) where
+  field
+    Carrier : Set c
+    _≈_     : Rel Carrier ℓ
+    _∙_      : Op₂ Carrier
+    _\\_      : Op₂ Carrier
+    _//_      : Op₂ Carrier
+
+  ∙-rawMagma : RawMagma c ℓ
+  ∙-rawMagma = record
+    { _≈_ = _≈_
+    ; _∙_ = _∙_
+    }
+
+  \\-rawMagma : RawMagma c ℓ
+  \\-rawMagma = record
+    { _≈_ = _≈_
+    ; _∙_ = _\\_
+    }
+
+  //-rawMagma : RawMagma c ℓ
+  //-rawMagma = record
+    { _≈_ = _≈_
+    ; _∙_ = _//_
+    }
+
 record QuasiGroup c ℓ : Set (suc (c ⊔ ℓ)) where
   field
     Carrier : Set c
     _≈_     : Rel Carrier ℓ
-    *       : Op₂ Carrier
-    \\      : Op₂ Carrier
-    //      : Op₂ Carrier
-    isQuasiGroup : IsQuasiGroup  _≈_ * \\ //
+    _∙_      : Op₂ Carrier
+    _\\_      : Op₂ Carrier
+    _//_      : Op₂ Carrier
+    isQuasiGroup : IsQuasiGroup  _≈_ _∙_ _\\_ _//_
     
   open IsQuasiGroup isQuasiGroup public
 
