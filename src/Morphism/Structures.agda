@@ -47,7 +47,6 @@ module LoopMorphisms (L₁ : RawLoop a ℓ₁) (L₂ : RawLoop b ℓ₂) where
 
     open IsMagmaHomomorphism isMagmaHomomorphism public
 
---TODO define for QuasiGroup
 
 module QuasiGroupMorphisms (Q₁ : RawQuasiGroup a ℓ₁) (Q₂ : RawQuasiGroup b ℓ₂) where
 
