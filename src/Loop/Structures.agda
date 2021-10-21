@@ -10,26 +10,33 @@ open import Algebra.Core
 open import Level using (_⊔_)
 open import Data.Product using (_,_; proj₁; proj₂)
 open import Algebra.Definitions _≈_
-open import Algebra.Structures _≈_
 open import Loop.Definitions _≈_
+open import Quasigroup.Structures _≈_
 
-record IsLeftBolLoop (_∙_ : Op₂ A) (ε : A) (⁻¹ : Op₁ A) : Set (a ⊔ ℓ) where
+record IsLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
   field
-    isLoop  : IsLoop _∙_  ε ⁻¹
-    leftBol : LeftBol _∙_
+    isQuasiGroup : IsQuasiGroup ∙ \\ //
+    identity : Identity ε ∙
+  
+  open IsQuasiGroup isQuasiGroup public
+
+record IsLeftBolLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
+  field
+    isLoop  : IsLoop ∙ \\ //  ε 
+    leftBol : LeftBol ∙
 
   open IsLoop isLoop public
 
-record IsRightBolLoop (_∙_ : Op₂ A) (ε : A) (⁻¹ : Op₁ A) : Set (a ⊔ ℓ) where
+record IsRightBolLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
   field
-    isLoop   : IsLoop _∙_  ε ⁻¹
-    rightBol : RightBol _∙_
+    isLoop   : IsLoop ∙ \\ //  ε 
+    rightBol : RightBol ∙
 
   open IsLoop isLoop public
 
-record IsMoufangLoop (_∙_ : Op₂ A) (ε : A) (⁻¹ : Op₁ A) : Set (a ⊔ ℓ) where
+record IsMoufangLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
   field
-    isLoop          : IsLoop _∙_  ε ⁻¹
-    moufangIdentity : MoufangIdentity _∙_
+    isLoop          : IsLoop ∙ \\ // ε
+    moufangIdentity : MoufangIdentity ∙
 
   open IsLoop isLoop public
