@@ -10,6 +10,26 @@ open import Loop.Structures
 open import Quasigroup.Bundles
 open import Quasigroup.Structures
 
+record RawLoop  c ℓ : Set (suc (c ⊔ ℓ)) where
+  field
+    Carrier : Set c
+    _≈_     : Rel Carrier ℓ
+    _∙_     : Op₂ Carrier
+    _\\_    : Op₂ Carrier
+    _//_    : Op₂ Carrier
+    ε       : Carrier
+
+  rawQuasiGroup : RawQuasiGroup c ℓ
+  rawQuasiGroup = record
+    { _≈_ = _≈_
+    ; _∙_ = _∙_
+    ; _\\_ = _\\_
+    ; _//_ = _//_
+    }
+
+  open RawQuasiGroup rawQuasiGroup public
+    using (_≈_ ; ∙-rawMagma; \\-rawMagma; //-rawMagma)
+
 record Loop  c ℓ : Set (suc (c ⊔ ℓ)) where
   field
     Carrier : Set c
