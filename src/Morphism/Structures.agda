@@ -17,22 +17,6 @@ private
   variable
     a b ℓ₁ ℓ₂ : Level
 
-{-module LoopMorphisms (L₁ : RawLoop a ℓ₁) (L₂ : RawLoop b ℓ₂) where
-
-  open RawLoop L₁ renaming (Carrier to A; _≈_ to _≈₁_; _∙_ to _∙_; _⁻¹ to _⁻¹₁; ε to ε₁)
-  open RawLoop L₂ renaming (Carrier to B; _≈_ to _≈₂_; _∙_ to _◦_; _⁻¹ to _⁻¹₂; ε to ε₂)
-  open MorphismDefinitions A B _≈₂_
-  open FunctionDefinitions _≈₁_ _≈₂_
-  open MagmaMorphisms  (RawLoop.rawMagma  L₁) (RawLoop.rawMagma  L₂)
-
-  record IsLoopHomomorphism (⟦_⟧ : A → B) : Set (a ⊔ ℓ₁ ⊔ ℓ₂) where
-    field
-      isMagmaHomomorphism : IsMagmaHomomorphism ⟦_⟧
-      ⁻¹-homo              : Homomorphic₁ ⟦_⟧ _⁻¹₁ _⁻¹₂
-
-    open IsMagmaHomomorphism isMagmaHomomorphism public-}
-
-
 module QuasiGroupMorphisms (Q₁ : RawQuasiGroup a ℓ₁) (Q₂ : RawQuasiGroup b ℓ₂) where
 
   open RawQuasiGroup Q₁ renaming (Carrier to A; ∙-rawMagma to ∙-rawMagma₁; \\-rawMagma to \\-rawMagma₁; //-rawMagma to //-rawMagma₁;
@@ -132,3 +116,38 @@ module QuasiGroupMorphisms (Q₁ : RawQuasiGroup a ℓ₁) (Q₂ : RawQuasiGroup
 
     open //.IsMagmaIsomorphism //-isMagmaIsomorphism public
       using (isRelIsomorphism)
+
+module LoopMorphisms (L₁ : RawLoop a ℓ₁) (L₂ : RawLoop b ℓ₂) where
+
+  open RawLoop L₁ renaming (Carrier to A; ∙-rawMagma to ∙-rawMagma₁; \\-rawMagma to \\-rawMagma₁; //-rawMagma to //-rawMagma₁;
+                                   _≈_ to _≈₁_; _∙_ to _∙₁_; _\\_ to _\\₁_; _//_ to _//₁_; ε to ε₁)
+  open RawLoop L₂ renaming (Carrier to B; ∙-rawMagma to ∙-rawMagma₂; \\-rawMagma to \\-rawMagma₂; //-rawMagma to //-rawMagma₂;  
+                                  _≈_ to _≈₂_; _∙_ to _∙₂_; _\\_ to _\\₂_; _//_ to _//₂_ ; ε to ε₂)
+  open MorphismDefinitions A B _≈₂_
+  open FunctionDefinitions _≈₁_ _≈₂_
+
+  open QuasiGroupMorphisms (RawLoop.rawQuasiGroup L₁) (RawLoop.rawQuasiGroup L₂)
+
+  record IsLoopHomomorphism (⟦_⟧ : A → B) : Set (a ⊔ ℓ₁ ⊔ ℓ₂) where
+    field
+      isQuasiGroupHomomorphism : IsQuasiGroupHomomorphism ⟦_⟧
+      ε-homo                   : Homomorphic₀ ⟦_⟧ ε₁ ε₂
+
+    open IsQuasiGroupHomomorphism isQuasiGroupHomomorphism public
+
+  record IsLoopMonomorphism (⟦_⟧ : A → B) : Set (a ⊔ ℓ₁ ⊔ ℓ₂) where
+    field
+      isLoopHomomorphism   : IsLoopHomomorphism ⟦_⟧
+      injective            : Injective ⟦_⟧
+
+    open IsLoopHomomorphism isLoopHomomorphism public
+
+  record IsLoopIsomorphism (⟦_⟧ : A → B) : Set (a ⊔ b ⊔ ℓ₁ ⊔ ℓ₂) where
+    field
+      isLoopMonomorphism   : IsLoopMonomorphism ⟦_⟧
+      surjective           : Surjective ⟦_⟧
+
+    open IsLoopMonomorphism isLoopMonomorphism public
+
+open QuasiGroupMorphisms public
+open LoopMorphisms public
