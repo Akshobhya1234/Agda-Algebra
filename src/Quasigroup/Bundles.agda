@@ -58,6 +58,9 @@ record RawQuasiGroup c ℓ : Set (suc (c ⊔ ℓ)) where
     { _≈_ = _≈_
     ; _∙_ = _//_
     }
+  
+  open RawMagma \\-rawMagma public 
+    using (_≉_)
 
 record QuasiGroup c ℓ : Set (suc (c ⊔ ℓ)) where
   field
@@ -79,7 +82,7 @@ record QuasiGroup c ℓ : Set (suc (c ⊔ ℓ)) where
     }
 
   open RawQuasiGroup rawQuasiGroup public
-    using (//-rawMagma; \\-rawMagma; ∙-rawMagma)
+    using (_≈_; //-rawMagma; \\-rawMagma; ∙-rawMagma)
 
   setoid : Setoid _ _
   setoid = record { isEquivalence = isEquivalence }

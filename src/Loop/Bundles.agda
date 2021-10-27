@@ -28,7 +28,7 @@ record RawLoop  c ℓ : Set (suc (c ⊔ ℓ)) where
     }
 
   open RawQuasiGroup rawQuasiGroup public
-    using (_≈_ ; ∙-rawMagma; \\-rawMagma; //-rawMagma)
+    using (_≉_ ; ∙-rawMagma; \\-rawMagma; //-rawMagma)
 
 record Loop  c ℓ : Set (suc (c ⊔ ℓ)) where
   field
@@ -42,11 +42,20 @@ record Loop  c ℓ : Set (suc (c ⊔ ℓ)) where
     
   open IsLoop isLoop public
 
+  rawLoop : RawLoop c ℓ
+  rawLoop = record
+    { _≈_ = _≈_
+    ; _∙_ = _∙_
+    ; _\\_ = _\\_
+    ; _//_ = _//_
+    ; ε = ε
+    }
+
   quasigroup : QuasiGroup _ _
   quasigroup = record { isQuasiGroup = isQuasiGroup }
 
   open QuasiGroup quasigroup public
-    using (_≉_)
+    using (_≉_; ∙-rawMagma; \\-rawMagma; //-rawMagma) 
   
 
 record LeftBolLoop c ℓ : Set (suc (c ⊔ ℓ)) where
@@ -63,7 +72,6 @@ record LeftBolLoop c ℓ : Set (suc (c ⊔ ℓ)) where
     
   loop : Loop _ _
   loop = record { isLoop = isLoop }
-
   
   open Loop loop public
     using (_≉_; quasigroup)
@@ -83,7 +91,6 @@ record RightBolLoop c ℓ : Set (suc (c ⊔ ℓ)) where
   loop : Loop _ _
   loop = record { isLoop = isLoop }
 
-  
   open Loop loop public
     using (_≉_; quasigroup)
 
@@ -101,7 +108,6 @@ record MoufangLoop c ℓ : Set (suc (c ⊔ ℓ)) where
 
   loop : Loop _ _
   loop = record { isLoop = isLoop }
-
   
   open Loop loop public
     using (_≉_; quasigroup)
