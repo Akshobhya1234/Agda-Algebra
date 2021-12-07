@@ -11,14 +11,7 @@ open import Level using (_⊔_)
 open import Data.Product using (_,_; proj₁; proj₂)
 open import Algebra.Definitions _≈_
 open import Loop.Definitions _≈_
-open import Quasigroup.Structures _≈_
-
-record IsLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
-  field
-    isQuasiGroup : IsQuasiGroup ∙ \\ //
-    identity : Identity ε ∙
-  
-  open IsQuasiGroup isQuasiGroup public
+open import Algebra.Structures _≈_
 
 record IsLeftBolLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
   field

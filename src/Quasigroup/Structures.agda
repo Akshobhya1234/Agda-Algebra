@@ -13,26 +13,12 @@ open import Algebra.Definitions _≈_
 open import Algebra.Structures _≈_
 open import Quasigroup.Definitions _≈_
 
+
+-- Note this is wrong. Pique is quasigroup with Idempotent element.
+
 record IsPique (_∙_ : Op₂ A) (ε : A) (⁻¹ : Op₁ A) : Set (a ⊔ ℓ) where
   field
-    isQuasigroup : IsQuasigroup _∙_  ε ⁻¹
-    idem         : Idempotent _∙_
+    isInvertibleMagma : IsInvertibleMagma _∙_  ε ⁻¹
+    idem              : Idempotent _∙_
 
-  open IsQuasigroup isQuasigroup public 
-
-------------------------------------------------------------------------
--- Structures with 3 binary operations
-------------------------------------------------------------------------
-
---Note this QuasiGroup is different from Algebra.Structures Quasigroup in stdlib
---Here QuasiGroup (Q, ∗, \, /) is a type (2,2,2) algebra
-
-record IsQuasiGroup (∙ \\ // : Op₂ A) : Set (a ⊔ ℓ) where
-  field
-    isEquivalence  : IsEquivalence _≈_
-    LeftDivisionˡ  : ∙ LeftDivisionˡ \\
-    LeftDivisionʳ  : ∙ LeftDivisionʳ \\
-    RightDivisionˡ : ∙ RightDivisionˡ //
-    RightDivisionʳ : ∙ RightDivisionʳ //
-
-  open IsEquivalence isEquivalence public
+  open IsInvertibleMagma isInvertibleMagma public 
