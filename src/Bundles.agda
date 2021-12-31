@@ -8,6 +8,23 @@ open import Algebra.Bundles
 open import Algebra.Structures
 open import Structures
 
+record InverseSemigroup c ℓ : Set (suc (c ⊔ ℓ)) where
+  infixl 7 _∙_
+  infix  4 _≈_
+  field
+    Carrier            : Set c
+    _≈_                : Rel Carrier ℓ
+    _∙_                : Op₂ Carrier
+    isInverseSemigroup : IsInverseSemigroup _≈_ _∙_
+
+  open IsInverseSemigroup isInverseSemigroup public
+
+  magma : Magma c ℓ
+  magma = record { isMagma = isMagma }
+
+  open Magma magma public
+    using (_≉_; rawMagma)
+
 record Rng c ℓ : Set (suc (c ⊔ ℓ)) where
   infix  8 -_
   infixl 7 _*_
