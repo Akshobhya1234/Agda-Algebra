@@ -15,14 +15,14 @@ open import Algebra.Structures _≈_
 
 record IsLeftBolLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
   field
-    isLoop  : IsLoop ∙ \\ //  ε 
+    isLoop  : IsLoop ∙ \\ //  ε
     leftBol : LeftBol ∙
 
   open IsLoop isLoop public
 
 record IsRightBolLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
   field
-    isLoop   : IsLoop ∙ \\ //  ε 
+    isLoop   : IsLoop ∙ \\ //  ε
     rightBol : RightBol ∙
 
   open IsLoop isLoop public

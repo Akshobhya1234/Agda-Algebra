@@ -22,14 +22,14 @@ record IsIdempotentMagma (∙ : Op₂ A) : Set (a ⊔ ℓ) where
 
 record IsAlternateMagma (∙ : Op₂ A) : Set (a ⊔ ℓ) where
   field
-    isMagma  : IsMagma ∙ 
+    isMagma  : IsMagma ∙
     alter    : Alternative ∙
 
   open IsMagma isMagma public
 
 record IsFlexibleMagma (∙ : Op₂ A) : Set (a ⊔ ℓ) where
   field
-    isMagma  : IsMagma ∙ 
+    isMagma  : IsMagma ∙
     flex     : Flexible ∙
 
   open IsMagma isMagma public

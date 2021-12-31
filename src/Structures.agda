@@ -27,7 +27,7 @@ record IsRng (+ * : Op₂ A) (-_ : Op₁ A) (0# : A) : Set (a ⊔ ℓ) where
     distrib          : * DistributesOver +
     zero             : Zero 0# *
 
-  open IsAbelianGroup +-isAbelianGroup public     
+  open IsAbelianGroup +-isAbelianGroup public
     renaming
     ( assoc                   to +-assoc
     ; ∙-cong                  to +-cong

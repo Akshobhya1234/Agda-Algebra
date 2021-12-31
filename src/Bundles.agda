@@ -1,5 +1,5 @@
 module Bundles where
-  
+
 open import Algebra.Core
 open import Quasigroup.Structures
 open import Relation.Binary
@@ -49,7 +49,7 @@ record Rng c ℓ : Set (suc (c ⊔ ℓ)) where
 
   open AbelianGroup +-abelianGroup public
     using () renaming (group to +-group; invertibleMagma to +-invertibleMagma; invertibleUnitalMagma to +-invertibleUnitalMagma)
-    
+
   open Semigroup *-semigroup public
     using () renaming
     ( rawMagma to *-rawMagma

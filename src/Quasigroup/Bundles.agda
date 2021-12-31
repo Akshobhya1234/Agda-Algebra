@@ -2,7 +2,7 @@
 
 
 module Quasigroup.Bundles where
-  
+
 open import Algebra.Core
 open import Quasigroup.Structures
 open import Relation.Binary

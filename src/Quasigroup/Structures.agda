@@ -21,4 +21,4 @@ record IsPique (_∙_ : Op₂ A) (ε : A) (⁻¹ : Op₁ A) : Set (a ⊔ ℓ) wh
     isInvertibleMagma : IsInvertibleMagma _∙_  ε ⁻¹
     idem              : Idempotent _∙_
 
-  open IsInvertibleMagma isInvertibleMagma public 
+  open IsInvertibleMagma isInvertibleMagma public

@@ -6,12 +6,12 @@ module Quasigroup.Definitions
   {a ℓ} {A : Set a}   -- The underlying set
   (_≈_ : Rel A ℓ)     -- The underlying equality
   where
-  
+
 open import Algebra.Core
 open import Data.Product
 
 LatinSquareProperty₁ : Op₂ A → Set _
-LatinSquareProperty₁ _*_ = ∀ a b x  → (a * x) ≈ b 
+LatinSquareProperty₁ _*_ = ∀ a b x  → (a * x) ≈ b
 
 LatinSquareProperty₂ : Op₂ A → Set _
 LatinSquareProperty₂ _*_ = ∀ a b y → (y * a) ≈ b

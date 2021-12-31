@@ -6,7 +6,7 @@ module Loop.Definitions
   {a ℓ} {A : Set a}   -- The underlying set
   (_≈_ : Rel A ℓ)     -- The underlying equality
   where
-  
+
 open import Algebra.Core
 open import Data.Product
 
