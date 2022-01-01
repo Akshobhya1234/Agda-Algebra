@@ -17,7 +17,7 @@ env:
   AGDA: agda --auto-inline -Werror +RTS -M6G -H3.5G -A128M -RTS -i. -i src/
 
 jobs:
-  test-algebra:
+  test-categories:
     runs-on: ubuntu-latest
     steps:
 
@@ -31,6 +31,7 @@ jobs:
           if [[ '${{ github.ref }}' == 'refs/heads/master' ]]; then
              echo "AGDA_DEPLOY=true" >> $GITHUB_ENV
           fi
+
       # The script won't be able to find Agda if we don't tell it to look at the
       # content of ~/.cabal/bin
       - name: Put cabal programs in PATH
@@ -79,6 +80,7 @@ jobs:
           touch doc/user-manual.pdf
           ${{ env.CABAL_INSTALL }}
           cd ..
+
       - name: Install stdlib
         run: |
           mkdir -p $HOME/.agda
@@ -88,12 +90,13 @@ jobs:
           mv agda-stdlib-${{ env.STDLIB_VERSION }} agda-stdlib
           echo "~/.agda/agda-stdlib/standard-library.agda-lib" > libraries
           cd -
+
 ########################################################################
 ## TESTING AND DEPLOYMENT
 ########################################################################
 
       # By default github actions do not pull the repo
-      - name: Checkout Agda-Algebra
+      - name: Checkout agda-algebra
         uses: actions/checkout@v2
 
       # Generate a fresh Everything.agda & index.agda and start building!
