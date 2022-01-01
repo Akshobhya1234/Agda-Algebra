@@ -13,12 +13,9 @@ open import Algebra.Definitions _≈_
 open import Algebra.Structures _≈_
 open import Quasigroup.Definitions _≈_
 
-
--- Note this is wrong. Pique is quasigroup with Idempotent element.
-
-record IsPique (_∙_ : Op₂ A) (ε : A) (⁻¹ : Op₁ A) : Set (a ⊔ ℓ) where
+record IsPique (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
   field
-    isInvertibleMagma : IsInvertibleMagma _∙_  ε ⁻¹
-    idem              : Idempotent _∙_
+    isQuasigroup : IsQuasigroup ∙ \\ //
+    idem         : Idempotent ∙
 
-  open IsInvertibleMagma isInvertibleMagma public
+  open IsQuasigroup isQuasigroup public
