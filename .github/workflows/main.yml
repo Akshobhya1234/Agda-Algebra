@@ -103,6 +103,7 @@ jobs:
       - name: Test agda-algebra
         run: |
           cp travis/* .
+          sudo chmod +x ./everything.sh
           ./everything.sh
           ${{ env.AGDA }} Everything.agda
           ${{ env.AGDA }} index.agda
