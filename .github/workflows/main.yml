@@ -8,7 +8,7 @@ on:
       - master
 
 env:
-  AGDA_COMMIT: 8c5066bfb46aaf0d3331013ebad2ae9ebef48c5d
+  AGDA_COMMIT: tags/v2.6.2
   STDLIB_VERSION: 2.0
 
   GHC_VERSION: 8.6.5
