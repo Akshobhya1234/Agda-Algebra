@@ -86,9 +86,10 @@ jobs:
           mkdir -p $HOME/.agda
           cd $HOME/.agda
           git clone https://github.com/agda/agda-stdlib/
+          cd agda-stdlib
           git checkout ${{ env.STDLIB_COMMIT }}
           echo "~/.agda/agda-stdlib/standard-library.agda-lib" > libraries
-          cd -
+          cd ../..
 
 ########################################################################
 ## TESTING AND DEPLOYMENT
