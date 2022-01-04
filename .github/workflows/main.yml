@@ -88,9 +88,9 @@ jobs:
           git clone https://github.com/agda/agda-stdlib
           cd agda-stdlib
           git checkout ${{ env.STDLIB_VERSION }}
-          mv agda-stdlib agda-stdlib
+          cd ..
           echo "~/.agda/agda-stdlib/standard-library.agda-lib" > libraries
-          cd ../..
+          cd ..
 
 ########################################################################
 ## TESTING AND DEPLOYMENT
