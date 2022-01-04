@@ -9,7 +9,7 @@ on:
 
 env:
   AGDA_COMMIT: tags/v2.6.2
-  STDLIB_VERSION: 1.7
+  STDLIB_VERSION: 8c5066bfb46aaf0d3331013ebad2ae9ebef48c5d
 
   GHC_VERSION: 8.6.5
   CABAL_VERSION: 3.2.0.0
@@ -85,11 +85,12 @@ jobs:
         run: |
           mkdir -p $HOME/.agda
           cd $HOME/.agda
-          wget https://github.com/agda/agda-stdlib/archive/v${{ env.STDLIB_VERSION }}.tar.gz
-          tar -xzvf v${{ env.STDLIB_VERSION }}.tar.gz
-          mv agda-stdlib-${{ env.STDLIB_VERSION }} agda-stdlib
+          git clone https://github.com/agda/agda-stdlib
+          cd agda-stdlib
+          git checkout ${{ env.STDLIB_VERSION }}
+          mv agda-stdlib agda-stdlib
           echo "~/.agda/agda-stdlib/standard-library.agda-lib" > libraries
-          cd -
+          cd ../..
 
 ########################################################################
 ## TESTING AND DEPLOYMENT
