@@ -29,4 +29,4 @@ InverseWithoutIdentity ∙ = (InverseWithoutIdentity₁ ∙) × (InverseWithoutI
 -- JacobiIdentity is (x ∙ (y ∙ z)) + ((y ∙ (z ∙ x)) + (z ∙ (x ∙ y))) = 0
 -- Using the antisymmetry property Jacobi identity may be rewritten as a modification of the associative property
 JacobiIdentity : Op₂ A → Op₂ A → Set _
-JacobiIdentity _∙_  _-_ = ∀ x y z → (x ∙ (y ∙ z)) ≈ ((y ∙ (z ∙ x)) - (z ∙ (x ∙ y))) 
+JacobiIdentity _∙_  _-_ = ∀ x y z → (x ∙ (y ∙ z)) ≈ ((y ∙ (z ∙ x)) - (z ∙ (x ∙ y)))
