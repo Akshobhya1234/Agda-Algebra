@@ -1,3 +1,5 @@
+{-# OPTIONS --without-K --safe #-}
+
 module Bundles where
 
 open import Algebra.Core

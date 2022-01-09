@@ -15,7 +15,7 @@ open import Definitions _≈_
 
 record IsInverseSemigroup (∙ : Op₂ A) : Set (a ⊔ ℓ) where
   field
-    isMagma : IsMagma ∙
+    isMagma                  : IsMagma ∙
     inverseWithoutIdentity   : InverseWithoutIdentity ∙
 
   open IsMagma isMagma public
