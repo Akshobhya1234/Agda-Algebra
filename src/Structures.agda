@@ -15,10 +15,10 @@ open import Definitions _≈_
 
 record IsInverseSemigroup (∙ : Op₂ A) : Set (a ⊔ ℓ) where
   field
-    isMagma                  : IsMagma ∙
+    isSemigroup              : IsSemigroup ∙
     inverseWithoutIdentity   : InverseWithoutIdentity ∙
 
-  open IsMagma isMagma public
+  open IsSemigroup isSemigroup public
 
 record IsRng (+ * : Op₂ A) (-_ : Op₁ A) (0# : A) : Set (a ⊔ ℓ) where
   field
