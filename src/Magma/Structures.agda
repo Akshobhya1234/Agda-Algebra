@@ -33,3 +33,17 @@ record IsFlexibleMagma (∙ : Op₂ A) : Set (a ⊔ ℓ) where
     flex     : Flexible ∙
 
   open IsMagma isMagma public
+
+record IsMedialMagma (∙ : Op₂ A) : Set (a ⊔ ℓ) where
+  field
+    isMagma : IsMagma ∙
+    medial  : Medial ∙
+
+  open IsMagma isMagma public
+
+record IsSemimedialMagma (∙ : Op₂ A) : Set (a ⊔ ℓ) where
+  field
+    isMagma : IsMagma ∙
+    semiMedial  : Semimedial ∙
+
+  open IsMagma isMagma public
