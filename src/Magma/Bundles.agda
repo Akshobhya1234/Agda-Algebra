@@ -94,3 +94,39 @@ record SemimedialMagma c ℓ : Set (suc (c ⊔ ℓ)) where
 
   open Magma magma public
     using (rawMagma)
+
+record LeftUnitalMagma c ℓ : Set (suc (c ⊔ ℓ)) where
+  infixl 7 _∙_
+  infix  4 _≈_
+  field
+    Carrier  : Set c
+    _≈_      : Rel Carrier ℓ
+    _∙_      : Op₂ Carrier
+    ε        : Carrier
+    isLeftUnitalMagma  : IsLeftUnitalMagma _≈_ _∙_ ε
+
+  open IsLeftUnitalMagma isLeftUnitalMagma public
+
+  magma : Magma c ℓ
+  magma = record { isMagma = isMagma }
+
+  open Magma magma public
+    using (rawMagma)
+
+record RightUnitalMagma c ℓ : Set (suc (c ⊔ ℓ)) where
+  infixl 7 _∙_
+  infix  4 _≈_
+  field
+    Carrier  : Set c
+    _≈_      : Rel Carrier ℓ
+    _∙_      : Op₂ Carrier
+    ε        : Carrier
+    isRightUnitalMagma  : IsRightUnitalMagma _≈_ _∙_ ε
+
+  open IsRightUnitalMagma isRightUnitalMagma public
+
+  magma : Magma c ℓ
+  magma = record { isMagma = isMagma }
+
+  open Magma magma public
+    using (rawMagma)

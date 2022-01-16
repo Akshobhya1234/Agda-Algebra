@@ -47,3 +47,18 @@ record IsSemimedialMagma (∙ : Op₂ A) : Set (a ⊔ ℓ) where
     semiMedial  : Semimedial ∙
 
   open IsMagma isMagma public
+
+record IsLeftUnitalMagma (∙ : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
+  field
+    isMagma  : IsMagma ∙
+    identity : LeftIdentity ε ∙
+
+  open IsMagma isMagma public
+
+record IsRightUnitalMagma (∙ : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
+  field
+    isMagma  : IsMagma ∙
+    identity : RightIdentity ε ∙
+
+  open IsMagma isMagma public
+
