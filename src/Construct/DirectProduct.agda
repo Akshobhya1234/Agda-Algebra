@@ -36,5 +36,3 @@ rawLoop M N = record
   ; ε       = M.ε , N.ε
   } where module M = RawLoop M; module N = RawLoop N
 
-
- 
