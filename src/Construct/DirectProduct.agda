@@ -39,10 +39,31 @@ rawLoop M N = record
 
 unitalMagma : UnitalMagma a ℓ₁ → UnitalMagma b ℓ₂ → UnitalMagma (a ⊔ b) (ℓ₁ ⊔ ℓ₂)
 unitalMagma M N = record
-  { isUnitalMagma = record
+  { ε = M.ε , N.ε
+  ; isUnitalMagma = record
     { isMagma = Magma.isMagma (magma M.magma N.magma)
     ; identity = (M.identityˡ , N.identityˡ <*>_)
                , (M.identityʳ , N.identityʳ <*>_)
     }
   } where module M = UnitalMagma M; module N = UnitalMagma N
+
+invertibleMagma : InvertibleMagma a ℓ₁ → InvertibleMagma b ℓ₂ → InvertibleMagma (a ⊔ b) (ℓ₁ ⊔ ℓ₂)
+invertibleMagma M N = record
+  { _⁻¹ = map M._⁻¹ N._⁻¹
+  ; isInvertibleMagma = record
+    { isMagma = Magma.isMagma (magma M.magma N.magma)
+    ; inverse = (λ x → (M.inverseˡ , N.inverseˡ) <*> x)
+                , (λ x → (M.inverseʳ , N.inverseʳ) <*> x)
+    }
+  } where module M = InvertibleMagma M; module N = InvertibleMagma N
+
+invertibleUnitalMagma : InvertibleUnitalMagma a ℓ₁ → InvertibleUnitalMagma b ℓ₂ → InvertibleUnitalMagma (a ⊔ b) (ℓ₁ ⊔ ℓ₂)
+invertibleUnitalMagma M N = record
+  { ε = M.ε , N.ε
+  ; isInvertibleUnitalMagma = record
+    { isInvertibleMagma = InvertibleMagma.isInvertibleMagma (invertibleMagma M.invertibleMagma N.invertibleMagma)
+    ; identity = (M.identityˡ , N.identityˡ <*>_)
+               , (M.identityʳ , N.identityʳ <*>_)
+    }
+  } where module M = InvertibleUnitalMagma M; module N = InvertibleUnitalMagma N
 
