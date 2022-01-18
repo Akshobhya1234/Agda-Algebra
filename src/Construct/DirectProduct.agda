@@ -36,3 +36,13 @@ rawLoop M N = record
   ; ε       = M.ε , N.ε
   } where module M = RawLoop M; module N = RawLoop N
 
+
+unitalMagma : UnitalMagma a ℓ₁ → UnitalMagma b ℓ₂ → UnitalMagma (a ⊔ b) (ℓ₁ ⊔ ℓ₂)
+unitalMagma M N = record
+  { isUnitalMagma = record
+    { isMagma = Magma.isMagma (magma M.magma N.magma)
+    ; identity = (M.identityˡ , N.identityˡ <*>_)
+               , (M.identityʳ , N.identityʳ <*>_)
+    }
+  } where module M = UnitalMagma M; module N = UnitalMagma N
+
