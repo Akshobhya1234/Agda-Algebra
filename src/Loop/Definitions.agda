@@ -28,5 +28,3 @@ MoufangIdentity₃ _∙_ = ∀ x y z → ((z ∙ x) ∙ (y ∙ z)) ≈ ((z ∙ (
 MoufangIdentity₄ : Op₂ A → Set _
 MoufangIdentity₄ _∙_ = ∀ x y z → ((z ∙ x) ∙ (y ∙ z)) ≈ (z ∙ ((x ∙ y) ∙ z))
 
-MoufangIdentity : Op₂ A → Set _
-MoufangIdentity _∙_ = (MoufangIdentity₁ _∙_) × (MoufangIdentity₂ _∙_) × (MoufangIdentity₃ _∙_) × (MoufangIdentity₄ _∙_)

@@ -29,7 +29,10 @@ record IsRightBolLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
 
 record IsMoufangLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
   field
-    isLoop          : IsLoop ∙ \\ // ε
-    moufangIdentity : MoufangIdentity ∙
+    isLoop           : IsLoop ∙ \\ // ε
+    moufangIdentity  : MoufangIdentity₁ ∙
+    moufangIdentity₂ : MoufangIdentity₂ ∙
+    moufangIdentity₃ : MoufangIdentity₃ ∙
+    moufangIdentity₄ : MoufangIdentity₄ ∙
 
   open IsLoop isLoop public
