@@ -10,7 +10,6 @@ open import Loop.Structures
 open import Algebra.Bundles
 open import Algebra.Structures
 
-
 record LeftBolLoop c ℓ : Set (suc (c ⊔ ℓ)) where
   field
     Carrier : Set c
@@ -27,7 +26,7 @@ record LeftBolLoop c ℓ : Set (suc (c ⊔ ℓ)) where
   loop = record { isLoop = isLoop }
 
   open Loop loop public
-    using (_≉_; quasigroup)
+    using (quasigroup)
 
 record RightBolLoop c ℓ : Set (suc (c ⊔ ℓ)) where
   field
@@ -45,7 +44,7 @@ record RightBolLoop c ℓ : Set (suc (c ⊔ ℓ)) where
   loop = record { isLoop = isLoop }
 
   open Loop loop public
-    using (_≉_; quasigroup)
+    using (quasigroup)
 
 record MoufangLoop c ℓ : Set (suc (c ⊔ ℓ)) where
   field
@@ -63,4 +62,4 @@ record MoufangLoop c ℓ : Set (suc (c ⊔ ℓ)) where
   loop = record { isLoop = isLoop }
 
   open Loop loop public
-    using (_≉_; quasigroup)
+    using (quasigroup)

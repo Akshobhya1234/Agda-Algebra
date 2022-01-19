@@ -15,8 +15,8 @@ open import Definitions _≈_
 
 record IsInverseSemigroup (∙ : Op₂ A) : Set (a ⊔ ℓ) where
   field
-    isSemigroup              : IsSemigroup ∙
-    inverseWithoutIdentity   : InverseWithoutIdentity ∙
+    isSemigroup     : IsSemigroup ∙
+    pseudoInverse   : PseudoInverse ∙
 
   open IsSemigroup isSemigroup public
 
