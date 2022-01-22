@@ -19,3 +19,17 @@ record IsPique (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
     idem         : Idempotent ∙
 
   open IsQuasigroup isQuasigroup public
+
+record IsLatinQuasigroup (∙ : Op₂ A ) : Set (a ⊔ ℓ) where
+  field
+    isMagma     : IsMagma ∙
+    latinSquare : LatinSquare ∙
+
+  open IsMagma isMagma public
+
+  latinSquare₁ : LatinSquare₁ ∙
+  latinSquare₁ = proj₁ latinSquare
+
+  latinSquare₂ : LatinSquare₂ ∙
+  latinSquare₂ = proj₂ latinSquare
+

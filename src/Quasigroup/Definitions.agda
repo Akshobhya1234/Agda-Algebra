@@ -10,11 +10,11 @@ module Quasigroup.Definitions
 open import Algebra.Core
 open import Data.Product
 
-LatinSquareProperty₁ : Op₂ A → Set _
-LatinSquareProperty₁ _*_ = ∀ a b x  → (a * x) ≈ b
+LatinSquare₁ : Op₂ A → Set _
+LatinSquare₁ _*_ = ∀ a b x  → (a * x) ≈ b
 
-LatinSquareProperty₂ : Op₂ A → Set _
-LatinSquareProperty₂ _*_ = ∀ a b y → (y * a) ≈ b
+LatinSquare₂ : Op₂ A → Set _
+LatinSquare₂ _*_ = ∀ a b y → (y * a) ≈ b
 
-LatinSquareProperty : Op₂ A → Set _
-LatinSquareProperty _*_ = (LatinSquareProperty₁ _*_) × (LatinSquareProperty₂ _*_)
+LatinSquare : Op₂ A → Set _
+LatinSquare _*_ = (LatinSquare₁ _*_) × (LatinSquare₂ _*_)
