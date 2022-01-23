@@ -20,10 +20,11 @@ record IsInverseSemigroup (∙ : Op₂ A) : Set (a ⊔ ℓ) where
 
   open IsSemigroup isSemigroup public
 
-record IsRng (+ * : Op₂ A) (-_ : Op₁ A) (0# : A) : Set (a ⊔ ℓ) where
+record IsRingWithoutOne (+ * : Op₂ A) (-_ : Op₁ A) (0# : A) : Set (a ⊔ ℓ) where
   field
     +-isAbelianGroup : IsAbelianGroup + 0# -_
-    *-isSemigroup    : IsSemigroup *
+    *-cong           : Congruent₂ *
+    *-assoc          : Associative *
     distrib          : * DistributesOver +
     zero             : Zero 0# *
 
@@ -53,15 +54,38 @@ record IsRng (+ * : Op₂ A) (-_ : Op₁ A) (0# : A) : Set (a ⊔ ℓ) where
     ; isGroup                 to +-isGroup
     )
 
-  open IsSemigroup *-isSemigroup public
+  *-isMagma : IsMagma *
+  *-isMagma = record
+    { isEquivalence = isEquivalence
+    ; ∙-cong        = *-cong
+    }
+
+  zeroˡ : LeftZero 0# *
+  zeroˡ = proj₁ zero
+
+  zeroʳ : RightZero 0# *
+  zeroʳ = proj₂ zero
+
+  distribˡ : * DistributesOverˡ +
+  distribˡ = proj₁ distrib
+
+  distribʳ : * DistributesOverʳ +
+  distribʳ = proj₂ distrib
+
+  *-isSemigroup : IsSemigroup *
+  *-isSemigroup = record
+    { isMagma = *-isMagma
+    ; assoc   = *-assoc
+    }
+
+  open IsMagma *-isMagma public
     using ()
     renaming
-    ( assoc    to *-assoc
-    ; ∙-cong   to *-cong
-    ; ∙-congˡ  to *-congˡ
+    ( ∙-congˡ  to *-congˡ
     ; ∙-congʳ  to *-congʳ
-    ; isMagma  to *-isMagma
     )
+
+
 
 record IsNonAssociativeRing (+ * : Op₂ A) (-_ : Op₁ A) (0# 1# : A) : Set (a ⊔ ℓ) where
   field
