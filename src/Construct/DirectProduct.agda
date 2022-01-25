@@ -4,7 +4,7 @@ open import Algebra.Construct.DirectProduct
 
 module Construct.DirectProduct where
 
-open import Algebra
+open import Algebra.Bundles
 import Algebra.Construct.DirectProduct as DirectProduct
 open import Data.Product
 open import Data.Product.Relation.Binary.Pointwise.NonDependent
@@ -69,3 +69,27 @@ invertibleUnitalMagma M N = record
     }
   } where module M = InvertibleUnitalMagma M; module N = InvertibleUnitalMagma N
 
+quasigroup : Quasigroup a ℓ₁ → Quasigroup b ℓ₂ → Quasigroup (a ⊔ b) (ℓ₁ ⊔ ℓ₂)
+quasigroup M N = record
+  { _\\_    = zip M._\\_ N._\\_
+  ; _//_    = zip M._//_ N._//_
+  ; isQuasigroup = record
+    { isMagma = Magma.isMagma (magma M.magma N.magma)
+    ; \\-cong = zip M.\\-cong N.\\-cong
+    ; //-cong = zip M.//-cong N.//-cong
+    ; leftDivides = (λ x y → M.leftDividesˡ , N.leftDividesˡ <*> x <*> y) , (λ x y → M.leftDividesʳ , N.leftDividesʳ <*> x <*> y)
+    ; rightDivides = (λ x y → M.rightDividesˡ , N.rightDividesˡ <*> x <*> y) , (λ x y → M.rightDividesʳ , N.rightDividesʳ <*> x <*> y)
+    }
+  } where module M = Quasigroup M; module N = Quasigroup N
+
+loop : Loop a ℓ₁ → Loop b ℓ₂ → Loop (a ⊔ b) (ℓ₁ ⊔ ℓ₂)
+loop M N = record
+  { ε = M.ε , N.ε
+  ; isLoop = record
+    { isQuasigroup = Quasigroup.isQuasigroup (quasigroup M.quasigroup N.quasigroup)
+    ; identity = (M.identityˡ , N.identityˡ <*>_)
+               , (M.identityʳ , N.identityʳ <*>_)
+    }
+  } where module M = Loop M; module N = Loop N
+
+ 
