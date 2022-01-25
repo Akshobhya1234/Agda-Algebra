@@ -47,14 +47,6 @@ record NonAssociativeRing c ℓ : Set (suc (c ⊔ ℓ)) where
   +-abelianGroup : AbelianGroup _ _
   +-abelianGroup = record { isAbelianGroup = +-isAbelianGroup }
 
-  *-unitalmagma : UnitalMagma _ _
-  *-unitalmagma = record { isUnitalMagma = *-isUnitalMagma }
-
   open AbelianGroup +-abelianGroup public
     using () renaming (group to +-group; invertibleMagma to +-invertibleMagma; invertibleUnitalMagma to +-invertibleUnitalMagma)
 
-  open UnitalMagma *-unitalmagma public
-    using () renaming
-    ( rawMagma to *-rawMagma
-    ; magma    to *-magma
-    )
