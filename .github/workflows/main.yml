@@ -9,15 +9,14 @@ on:
 
 env:
   AGDA_COMMIT: tags/v2.6.2
-  STDLIB_VERSION: 78814281a349e04d567f439bf709a392b2f0126e
-
+  STDLIB_VERSION: 08b40ffedfd810b72a15f83e46f3469f8eb1c1a9
   GHC_VERSION: 8.6.5
   CABAL_VERSION: 3.2.0.0
   CABAL_INSTALL: cabal install --overwrite-policy=always --ghc-options='-O1 +RTS -M6G -RTS'
   AGDA: agda --auto-inline -Werror +RTS -M6G -H3.5G -A128M -RTS -i. -i src/
 
 jobs:
-  test-categories:
+  test-algebra:
     runs-on: ubuntu-latest
     steps:
 
