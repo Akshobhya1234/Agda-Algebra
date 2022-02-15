@@ -9,6 +9,10 @@ open import Algebra.Bundles
 open import Algebra.Structures
 open import Structures
 
+------------------------------------------------------------------------
+-- Bundles with 1 binary operation
+------------------------------------------------------------------------
+
 record IdempotentMagma c ℓ : Set (suc (c ⊔ ℓ)) where
   infixl 7 _∙_
   infix  4 _≈_
@@ -94,6 +98,44 @@ record SemimedialMagma c ℓ : Set (suc (c ⊔ ℓ)) where
   open Magma magma public
     using (rawMagma)
 
+record LatinQuasigroup c ℓ : Set (suc (c ⊔ ℓ)) where
+  infixl 7 _∙_
+  infix  4 _≈_
+  field
+    Carrier : Set c
+    _≈_     : Rel Carrier ℓ
+    _∙_     : Op₂ Carrier
+    isLatinQuasigroup : IsLatinQuasigroup _≈_ _∙_
+
+  open IsLatinQuasigroup isLatinQuasigroup public
+
+  magma : Magma c ℓ
+  magma = record { isMagma = isMagma }
+
+  open Magma magma public
+    using (_≉_; rawMagma)
+
+record InverseSemigroup c ℓ : Set (suc (c ⊔ ℓ)) where
+  infixl 7 _∙_
+  infix  4 _≈_
+  field
+    Carrier            : Set c
+    _≈_                : Rel Carrier ℓ
+    _∙_                : Op₂ Carrier
+    isInverseSemigroup : IsInverseSemigroup _≈_ _∙_
+
+  open IsInverseSemigroup isInverseSemigroup public
+
+  magma : Magma c ℓ
+  magma = record { isMagma = isMagma }
+
+  open Magma magma public
+    using (_≉_; rawMagma)
+
+------------------------------------------------------------------------
+-- Bundles with 1 binary operation and 1 element
+------------------------------------------------------------------------
+
 record LeftUnitalMagma c ℓ : Set (suc (c ⊔ ℓ)) where
   infixl 7 _∙_
   infix  4 _≈_
@@ -130,6 +172,36 @@ record RightUnitalMagma c ℓ : Set (suc (c ⊔ ℓ)) where
   open Magma magma public
     using (rawMagma)
 
+------------------------------------------------------------------------
+-- Bundles with 2 binary operations, 1 unary operation & 1 element
+------------------------------------------------------------------------
+
+record NonAssociativeRing c ℓ : Set (suc (c ⊔ ℓ)) where
+  infix  8 -_
+  infixl 7 _*_
+  infixl 6 _+_
+  infix  4 _≈_
+  field
+    Carrier               : Set c
+    _≈_                   : Rel Carrier ℓ
+    _+_                   : Op₂ Carrier
+    _*_                   : Op₂ Carrier
+    -_                    : Op₁ Carrier
+    0#                    : Carrier
+    1#                    : Carrier
+    isNonAssociativeRing  : IsNonAssociativeRing _≈_ _+_ _*_ -_ 0# 1#
+
+  open IsNonAssociativeRing isNonAssociativeRing public
+
+  +-abelianGroup : AbelianGroup _ _
+  +-abelianGroup = record { isAbelianGroup = +-isAbelianGroup }
+
+  open AbelianGroup +-abelianGroup public
+    using () renaming (group to +-group; invertibleMagma to +-invertibleMagma; invertibleUnitalMagma to +-invertibleUnitalMagma)
+
+------------------------------------------------------------------------
+-- Bundles with 3 binary operation and 1 element
+------------------------------------------------------------------------
 
 record Pique c ℓ : Set (suc (c ⊔ ℓ)) where
   infixl 7 _∙_
@@ -146,23 +218,6 @@ record Pique c ℓ : Set (suc (c ⊔ ℓ)) where
     isPique : IsPique _≈_ _∙_ _\\_ _//_ ε
 
   open IsPique isPique public
-
-record LatinQuasigroup c ℓ : Set (suc (c ⊔ ℓ)) where
-  infixl 7 _∙_
-  infix  4 _≈_
-  field
-    Carrier : Set c
-    _≈_     : Rel Carrier ℓ
-    _∙_     : Op₂ Carrier
-    isLatinQuasigroup : IsLatinQuasigroup _≈_ _∙_
-
-  open IsLatinQuasigroup isLatinQuasigroup public
-
-  magma : Magma c ℓ
-  magma = record { isMagma = isMagma }
-
-  open Magma magma public
-    using (_≉_; rawMagma)
 
 record LeftBolLoop c ℓ : Set (suc (c ⊔ ℓ)) where
   field
@@ -217,45 +272,3 @@ record MoufangLoop c ℓ : Set (suc (c ⊔ ℓ)) where
 
   open Loop loop public
     using (quasigroup)
-
-
-record InverseSemigroup c ℓ : Set (suc (c ⊔ ℓ)) where
-  infixl 7 _∙_
-  infix  4 _≈_
-  field
-    Carrier            : Set c
-    _≈_                : Rel Carrier ℓ
-    _∙_                : Op₂ Carrier
-    isInverseSemigroup : IsInverseSemigroup _≈_ _∙_
-
-  open IsInverseSemigroup isInverseSemigroup public
-
-  magma : Magma c ℓ
-  magma = record { isMagma = isMagma }
-
-  open Magma magma public
-    using (_≉_; rawMagma)
-
-record NonAssociativeRing c ℓ : Set (suc (c ⊔ ℓ)) where
-  infix  8 -_
-  infixl 7 _*_
-  infixl 6 _+_
-  infix  4 _≈_
-  field
-    Carrier               : Set c
-    _≈_                   : Rel Carrier ℓ
-    _+_                   : Op₂ Carrier
-    _*_                   : Op₂ Carrier
-    -_                    : Op₁ Carrier
-    0#                    : Carrier
-    1#                    : Carrier
-    isNonAssociativeRing  : IsNonAssociativeRing _≈_ _+_ _*_ -_ 0# 1#
-
-  open IsNonAssociativeRing isNonAssociativeRing public
-
-  +-abelianGroup : AbelianGroup _ _
-  +-abelianGroup = record { isAbelianGroup = +-isAbelianGroup }
-
-  open AbelianGroup +-abelianGroup public
-    using () renaming (group to +-group; invertibleMagma to +-invertibleMagma; invertibleUnitalMagma to +-invertibleUnitalMagma)
-

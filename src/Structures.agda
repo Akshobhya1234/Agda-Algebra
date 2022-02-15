@@ -13,36 +13,9 @@ open import Algebra.Definitions _≈_
 open import Algebra.Structures _≈_
 open import Definitions _≈_
 
-record IsLeftBolLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
-  field
-    isLoop  : IsLoop ∙ \\ //  ε
-    leftBol : LeftBol ∙
-
-  open IsLoop isLoop public
-
-record IsRightBolLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
-  field
-    isLoop   : IsLoop ∙ \\ //  ε
-    rightBol : RightBol ∙
-
-  open IsLoop isLoop public
-
-record IsMoufangLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
-  field
-    isLoop           : IsLoop ∙ \\ // ε
-    moufangIdentity  : MoufangIdentity₁ ∙
-    moufangIdentity₂ : MoufangIdentity₂ ∙
-    moufangIdentity₃ : MoufangIdentity₃ ∙
-    moufangIdentity₄ : MoufangIdentity₄ ∙
-
-  open IsLoop isLoop public
-
-record IsPique (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
-  field
-    isQuasigroup : IsQuasigroup ∙ \\ //
-    idem         : Idempotent ∙
-
-  open IsQuasigroup isQuasigroup public
+------------------------------------------------------------------------
+-- Structures with 1 binary operation
+------------------------------------------------------------------------
 
 record IsLatinQuasigroup (∙ : Op₂ A ) : Set (a ⊔ ℓ) where
   field
@@ -92,6 +65,17 @@ record IsSemimedialMagma (∙ : Op₂ A) : Set (a ⊔ ℓ) where
 
   open IsMagma isMagma public
 
+record IsInverseSemigroup (∙ : Op₂ A) : Set (a ⊔ ℓ) where
+  field
+    isSemigroup     : IsSemigroup ∙
+    pseudoInverse   : PseudoInverse ∙
+
+  open IsSemigroup isSemigroup public
+
+------------------------------------------------------------------------
+-- Structures with 1 binary operation and 1 element
+------------------------------------------------------------------------
+
 record IsLeftUnitalMagma (∙ : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
   field
     isMagma  : IsMagma ∙
@@ -106,13 +90,44 @@ record IsRightUnitalMagma (∙ : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
 
   open IsMagma isMagma public
 
+------------------------------------------------------------------------
+-- Structures with 3 binary operation and 1 element
+------------------------------------------------------------------------
 
-record IsInverseSemigroup (∙ : Op₂ A) : Set (a ⊔ ℓ) where
+record IsLeftBolLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
   field
-    isSemigroup     : IsSemigroup ∙
-    pseudoInverse   : PseudoInverse ∙
+    isLoop  : IsLoop ∙ \\ //  ε
+    leftBol : LeftBol ∙
 
-  open IsSemigroup isSemigroup public
+  open IsLoop isLoop public
+
+record IsRightBolLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
+  field
+    isLoop   : IsLoop ∙ \\ //  ε
+    rightBol : RightBol ∙
+
+  open IsLoop isLoop public
+
+record IsMoufangLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
+  field
+    isLoop           : IsLoop ∙ \\ // ε
+    moufangIdentity  : MoufangIdentity₁ ∙
+    moufangIdentity₂ : MoufangIdentity₂ ∙
+    moufangIdentity₃ : MoufangIdentity₃ ∙
+    moufangIdentity₄ : MoufangIdentity₄ ∙
+
+  open IsLoop isLoop public
+
+record IsPique (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
+  field
+    isQuasigroup : IsQuasigroup ∙ \\ //
+    idem         : Idempotent ∙
+
+  open IsQuasigroup isQuasigroup public
+
+------------------------------------------------------------------------
+-- Structures with 2 binary operations, 1 unary operation & 1 element
+------------------------------------------------------------------------
 
 record IsNonAssociativeRing (+ * : Op₂ A) (-_ : Op₁ A) (0# 1# : A) : Set (a ⊔ ℓ) where
   field
