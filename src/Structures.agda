@@ -53,13 +53,13 @@ record IsNonAssociativeRing (+ * : Op₂ A) (-_ : Op₁ A) (0# 1# : A) : Set (a 
     ; isInvertibleUnitalMagma to +-isInvertibleUnitalMagma
     ; isGroup                 to +-isGroup
     )
-  
+
   *-isMagma : IsMagma *
   *-isMagma = record
     { isEquivalence = isEquivalence
     ; ∙-cong        = *-cong
     }
-  
+
   *-identityˡ : LeftIdentity 1# *
   *-identityˡ = proj₁ identity
 
