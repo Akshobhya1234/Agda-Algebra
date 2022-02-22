@@ -91,41 +91,6 @@ record IsRightUnitalMagma (∙ : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
   open IsMagma isMagma public
 
 ------------------------------------------------------------------------
--- Structures with 3 binary operation and 1 element
-------------------------------------------------------------------------
-
-record IsLeftBolLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
-  field
-    isLoop  : IsLoop ∙ \\ //  ε
-    leftBol : LeftBol ∙
-
-  open IsLoop isLoop public
-
-record IsRightBolLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
-  field
-    isLoop   : IsLoop ∙ \\ //  ε
-    rightBol : RightBol ∙
-
-  open IsLoop isLoop public
-
-record IsMoufangLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
-  field
-    isLoop           : IsLoop ∙ \\ // ε
-    moufangIdentity  : MoufangIdentity₁ ∙
-    moufangIdentity₂ : MoufangIdentity₂ ∙
-    moufangIdentity₃ : MoufangIdentity₃ ∙
-    moufangIdentity₄ : MoufangIdentity₄ ∙
-
-  open IsLoop isLoop public
-
-record IsPique (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
-  field
-    isQuasigroup : IsQuasigroup ∙ \\ //
-    idem         : Idempotent ∙
-
-  open IsQuasigroup isQuasigroup public
-
-------------------------------------------------------------------------
 -- Structures with 2 binary operations, 1 unary operation & 1 element
 ------------------------------------------------------------------------
 
@@ -174,3 +139,92 @@ record IsNonAssociativeRing (+ * : Op₂ A) (-_ : Op₁ A) (0# 1# : A) : Set (a 
 
   *-identityʳ : RightIdentity 1# *
   *-identityʳ = proj₂ identity
+
+------------------------------------------------------------------------
+-- Structures with 2 binary operations & 2 elements
+------------------------------------------------------------------------
+
+record IsQuasiring (+ * : Op₂ A) (0# 1# : A) : Set (a ⊔ ℓ) where
+  field
+    +-isMonoid    : IsMonoid + 0#
+    *-cong        : Congruent₂ *
+    *-assoc       : Associative *
+    *-identity    : Identity 1# *
+    distrib       : * DistributesOver +
+    zero          : Zero 0# *
+
+  open IsMonoid +-isMonoid public
+    renaming
+    ( assoc         to +-assoc
+    ; ∙-cong        to +-cong
+    ; ∙-congˡ       to +-congˡ
+    ; ∙-congʳ       to +-congʳ
+    ; identity      to +-identity
+    ; identityˡ     to +-identityˡ
+    ; identityʳ     to +-identityʳ
+    ; isMagma       to +-isMagma
+    ; isUnitalMagma to +-isUnitalMagma
+    ; isSemigroup   to +-isSemigroup
+    )
+
+  *-isMagma : IsMagma *
+  *-isMagma = record
+    { isEquivalence = isEquivalence
+    ; ∙-cong        = *-cong
+    }
+
+  *-isSemigroup : IsSemigroup *
+  *-isSemigroup = record
+    { isMagma = *-isMagma
+    ; assoc   = *-assoc
+    }
+
+  *-isMonoid : IsMonoid * 1#
+  *-isMonoid = record
+    { isSemigroup = *-isSemigroup
+    ; identity    = *-identity
+    }
+
+  open IsMonoid *-isMonoid public
+    using ()
+    renaming
+    ( ∙-congˡ     to *-congˡ
+    ; ∙-congʳ     to *-congʳ
+    ; identityˡ   to *-identityˡ
+    ; identityʳ   to *-identityʳ
+    )
+
+------------------------------------------------------------------------
+-- Structures with 3 binary operation and 1 element
+------------------------------------------------------------------------
+
+record IsLeftBolLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
+  field
+    isLoop  : IsLoop ∙ \\ //  ε
+    leftBol : LeftBol ∙
+
+  open IsLoop isLoop public
+
+record IsRightBolLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
+  field
+    isLoop   : IsLoop ∙ \\ //  ε
+    rightBol : RightBol ∙
+
+  open IsLoop isLoop public
+
+record IsMoufangLoop (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
+  field
+    isLoop           : IsLoop ∙ \\ // ε
+    moufangIdentity  : MoufangIdentity₁ ∙
+    moufangIdentity₂ : MoufangIdentity₂ ∙
+    moufangIdentity₃ : MoufangIdentity₃ ∙
+    moufangIdentity₄ : MoufangIdentity₄ ∙
+
+  open IsLoop isLoop public
+
+record IsPique (∙ \\ // : Op₂ A) (ε : A) : Set (a ⊔ ℓ) where
+  field
+    isQuasigroup : IsQuasigroup ∙ \\ //
+    idem         : Idempotent ∙
+
+  open IsQuasigroup isQuasigroup public
