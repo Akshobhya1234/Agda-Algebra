@@ -195,6 +195,25 @@ record IsQuasiring (+ * : Op₂ A) (0# 1# : A) : Set (a ⊔ ℓ) where
     )
 
 ------------------------------------------------------------------------
+-- Bundles with 2 binary operations, 1 unary operation & 2 elements
+------------------------------------------------------------------------
+
+record IsNearring (+ * : Op₂ A) (0# 1# : A) (_⁻¹ : Op₁ A) : Set (a ⊔ ℓ) where
+  field
+    isQuasiring : IsQuasiring + * 0# 1#
+    +-inverse   : Inverse 0# _⁻¹ +
+    ⁻¹-cong     : Congruent₁ _⁻¹
+
+  open IsQuasiring isQuasiring public
+
+  +-inverseˡ : LeftInverse 0# _⁻¹ +
+  +-inverseˡ = proj₁ +-inverse
+
+  +-inverseʳ : RightInverse 0# _⁻¹ +
+  +-inverseʳ = proj₂ +-inverse
+
+
+------------------------------------------------------------------------
 -- Structures with 3 binary operation and 1 element
 ------------------------------------------------------------------------
 
